@@ -18,7 +18,13 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-gray-950 text-white">
+    <motion.footer
+      id="contact"
+      className="bg-gray-950 text-white"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -150,6 +156,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
