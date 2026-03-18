@@ -1,33 +1,33 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Leaf } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Leaf } from "lucide-react";
 
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Amenities', href: '#amenities' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Rooms', href: '#rooms' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'Contact', href: '#contact' },
+  { label: "About", href: "#about" },
+  { label: "Amenities", href: "#amenities" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Rooms", href: "#rooms" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     setIsOpen(false);
     setActiveSection(href);
@@ -38,11 +38,11 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-emerald-50'
-            : 'bg-transparent'
+            ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-emerald-50"
+            : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,18 +50,42 @@ export default function Navbar() {
             {/* Logo */}
             <motion.a
               href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-              className="flex items-center gap-2.5 group"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="flex items-center gap-3 group"
               whileHover={{ scale: 1.02 }}
             >
-              <div className={`p-1.5 rounded-xl transition-colors ${isScrolled ? 'bg-emerald-700' : 'bg-white/20 backdrop-blur-sm'}`}>
-                <Leaf className={`w-5 h-5 ${isScrolled ? 'text-white' : 'text-white'}`} />
+              {/* Logo Image */}
+              <div
+                className={`overflow-hidden rounded-xl transition-colors ${
+                  isScrolled
+                    ? "bg-white p-1.5 shadow-sm"
+                    : "bg-white/20 backdrop-blur-sm p-1.5"
+                }`}
+              >
+                <img
+                  src="/images/logocasa.png" // 🔁 replace with actual logo path
+                  alt="Casa Granada Logo"
+                  className="w-8 h-8 object-contain"
+                />
               </div>
+
+              {/* Text (optional: you can remove this if logo already has text) */}
               <div>
-                <span className={`font-display text-xl font-semibold tracking-wide block leading-none ${isScrolled ? 'text-emerald-900' : 'text-white'}`}>
+                <span
+                  className={`font-display text-xl font-semibold tracking-wide block leading-none ${
+                    isScrolled ? "text-emerald-900" : "text-white"
+                  }`}
+                >
                   Casa Granada
                 </span>
-                <span className={`text-[10px] tracking-[0.2em] uppercase font-body font-medium ${isScrolled ? 'text-emerald-600' : 'text-white/70'}`}>
+                <span
+                  className={`text-[10px] tracking-[0.2em] uppercase font-body font-medium ${
+                    isScrolled ? "text-emerald-600" : "text-white/70"
+                  }`}
+                >
                   Private Villa · Batangas
                 </span>
               </div>
@@ -75,9 +99,9 @@ export default function Navbar() {
                   onClick={() => scrollTo(link.href)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium tracking-wide transition-all duration-200 ${
                     isScrolled
-                      ? 'text-gray-600 hover:text-emerald-700 hover:bg-emerald-50'
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
-                  } ${activeSection === link.href ? (isScrolled ? 'text-emerald-700 bg-emerald-50' : 'text-white bg-white/10') : ''}`}
+                      ? "text-gray-600 hover:text-emerald-700 hover:bg-emerald-50"
+                      : "text-white/80 hover:text-white hover:bg-white/10"
+                  } ${activeSection === link.href ? (isScrolled ? "text-emerald-700 bg-emerald-50" : "text-white bg-white/10") : ""}`}
                 >
                   {link.label}
                 </button>
@@ -89,7 +113,7 @@ export default function Navbar() {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => scrollTo('#booking')}
+                onClick={() => scrollTo("#booking")}
                 className="px-5 py-2.5 bg-emerald-700 text-white text-sm font-semibold rounded-xl hover:bg-emerald-800 transition-colors shadow-lg shadow-emerald-900/20"
               >
                 Book Now
@@ -99,9 +123,13 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-colors ${isScrolled ? 'text-gray-700 hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+              className={`lg:hidden p-2 rounded-lg transition-colors ${isScrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-white/10"}`}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
@@ -132,7 +160,7 @@ export default function Navbar() {
               ))}
               <div className="pt-2 pb-1">
                 <button
-                  onClick={() => scrollTo('#booking')}
+                  onClick={() => scrollTo("#booking")}
                   className="w-full py-3 bg-emerald-700 text-white font-semibold rounded-xl hover:bg-emerald-800 transition-colors"
                 >
                   Book Now

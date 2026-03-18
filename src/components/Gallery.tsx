@@ -1,85 +1,63 @@
-import { useState, useRef } from 'react';
-import { motion, useInView, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 
 const galleryImages = [
   {
-    id: '1',
-    url: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80&auto=format&fit=crop',
-    caption: 'Infinity Pool at Dusk',
-    category: 'Pool',
+    id: "1",
+    url: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80&auto=format&fit=crop",
+    caption: "Infinity Pool at Dusk",
+    category: "Pool",
   },
   {
-    id: '2',
-    url: 'https://images.unsplash.com/photo-1540541338537-41369657c3e7?w=800&q=80&auto=format&fit=crop',
-    caption: 'Tropical Garden View',
-    category: 'Outdoor',
+    id: "3",
+    url: "https://images.unsplash.com/photo-1560472355-536de3962603?w=800&q=80&auto=format&fit=crop",
+    caption: "Master Bedroom Suite",
+    category: "Rooms",
   },
   {
-    id: '3',
-    url: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=800&q=80&auto=format&fit=crop',
-    caption: 'Master Bedroom Suite',
-    category: 'Rooms',
+    id: "4",
+    url: "https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80&auto=format&fit=crop",
+    caption: "Evening Pool Ambiance",
+    category: "Pool",
   },
   {
-    id: '4',
-    url: 'https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=800&q=80&auto=format&fit=crop',
-    caption: 'Evening Pool Ambiance',
-    category: 'Pool',
+    id: "5",
+    url: "https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=80&auto=format&fit=crop",
+    caption: "Open Air Lounge",
+    category: "Outdoor",
   },
   {
-    id: '5',
-    url: 'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=800&q=80&auto=format&fit=crop',
-    caption: 'Open Air Lounge',
-    category: 'Outdoor',
-  },
-  {
-    id: '6',
-    url: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80&auto=format&fit=crop',
-    caption: 'Jacuzzi Corner',
-    category: 'Pool',
-  },
-  {
-    id: '7',
-    url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80&auto=format&fit=crop',
-    caption: 'Private Garden Path',
-    category: 'Outdoor',
-  },
-  {
-    id: '8',
-    url: 'https://images.unsplash.com/photo-1630699144867-37acec97df5a?w=800&q=80&auto=format&fit=crop',
-    caption: 'Cozy Living Area',
-    category: 'Rooms',
-  },
-  {
-    id: '9',
-    url: 'https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=800&q=80&auto=format&fit=crop',
-    caption: 'Dining Al Fresco',
-    category: 'Outdoor',
+    id: "6",
+    url: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=800&q=80&auto=format&fit=crop",
+    caption: "Jacuzzi Corner",
+    category: "Pool",
   },
 ];
 
-const categories = ['All', 'Pool', 'Outdoor', 'Rooms'];
+const categories = ["All", "Pool", "Outdoor", "Rooms"];
 
 export default function Gallery() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const [activeCategory, setActiveCategory] = useState('All');
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filtered = activeCategory === 'All'
-    ? galleryImages
-    : galleryImages.filter(img => img.category === activeCategory);
+  const filtered =
+    activeCategory === "All"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === activeCategory);
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
-  const navigate = (dir: 'prev' | 'next') => {
+  const navigate = (dir: "prev" | "next") => {
     if (lightboxIndex === null) return;
     const total = filtered.length;
-    setLightboxIndex(dir === 'prev'
-      ? (lightboxIndex - 1 + total) % total
-      : (lightboxIndex + 1) % total
+    setLightboxIndex(
+      dir === "prev"
+        ? (lightboxIndex - 1 + total) % total
+        : (lightboxIndex + 1) % total,
     );
   };
 
@@ -94,26 +72,29 @@ export default function Gallery() {
           className="text-center mb-12"
         >
           <div className="luxury-divider mb-4">
-            <span className="text-xs font-semibold tracking-[0.3em] uppercase text-emerald-600">Photo Gallery</span>
+            <span className="text-xs font-semibold tracking-[0.3em] uppercase text-emerald-600">
+              Photo Gallery
+            </span>
           </div>
           <h2 className="font-display text-4xl lg:text-5xl font-semibold text-gray-900 mb-4">
             See It to
             <span className="text-emerald-700 italic"> Believe It</span>
           </h2>
           <p className="text-gray-500 text-lg max-w-lg mx-auto mb-8">
-            Every corner of Casa Granada tells a story of beauty, comfort, and nature's finest.
+            Every corner of Casa Granada tells a story of beauty, comfort, and
+            nature's finest.
           </p>
 
           {/* Category filters */}
           <div className="flex flex-wrap justify-center gap-2">
-            {categories.map(cat => (
+            {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                   activeCategory === cat
-                    ? 'bg-emerald-700 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700'
+                    ? "bg-emerald-700 text-white shadow-md"
+                    : "bg-gray-100 text-gray-600 hover:bg-emerald-50 hover:text-emerald-700"
                 }`}
               >
                 {cat}
@@ -123,10 +104,7 @@ export default function Gallery() {
         </motion.div>
 
         {/* Masonry grid */}
-        <motion.div
-          layout
-          className="columns-2 md:columns-3 gap-4 space-y-0"
-        >
+        <motion.div layout className="columns-2 md:columns-3 gap-4 space-y-0">
           {filtered.map((image, i) => (
             <motion.div
               key={image.id}
@@ -147,7 +125,9 @@ export default function Gallery() {
                 <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white text-sm font-medium">{image.caption}</p>
+                <p className="text-white text-sm font-medium">
+                  {image.caption}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -173,14 +153,20 @@ export default function Gallery() {
 
             <button
               className="absolute left-4 text-white/70 hover:text-white p-3 rounded-full hover:bg-white/10 transition-colors z-10"
-              onClick={(e) => { e.stopPropagation(); navigate('prev'); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("prev");
+              }}
             >
               <ChevronLeft className="w-7 h-7" />
             </button>
 
             <button
               className="absolute right-4 text-white/70 hover:text-white p-3 rounded-full hover:bg-white/10 transition-colors z-10"
-              onClick={(e) => { e.stopPropagation(); navigate('next'); }}
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate("next");
+              }}
             >
               <ChevronRight className="w-7 h-7" />
             </button>
@@ -192,7 +178,7 @@ export default function Gallery() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.25 }}
               className="max-w-5xl w-full max-h-[85vh]"
-              onClick={e => e.stopPropagation()}
+              onClick={(e) => e.stopPropagation()}
             >
               <img
                 src={filtered[lightboxIndex].url}
@@ -200,7 +186,8 @@ export default function Gallery() {
                 className="w-full max-h-[80vh] object-contain rounded-xl"
               />
               <p className="text-center text-white/70 mt-3 text-sm">
-                {filtered[lightboxIndex].caption} · {lightboxIndex + 1} / {filtered.length}
+                {filtered[lightboxIndex].caption} · {lightboxIndex + 1} /{" "}
+                {filtered.length}
               </p>
             </motion.div>
           </motion.div>

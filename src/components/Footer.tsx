@@ -1,12 +1,20 @@
-import { motion } from 'framer-motion';
-import { Leaf, MapPin, Phone, Mail, Instagram, Facebook, Heart } from 'lucide-react';
+import { motion } from "framer-motion";
+import {
+  Leaf,
+  MapPin,
+  Phone,
+  Mail,
+  Instagram,
+  Facebook,
+  Heart,
+} from "lucide-react";
 
-const navLinks = ['About', 'Amenities', 'Gallery', 'Rooms', 'Reviews'];
-const sectionIds = ['#about', '#amenities', '#gallery', '#rooms', '#reviews'];
+const navLinks = ["About", "Amenities", "Gallery", "Rooms", "Reviews"];
+const sectionIds = ["#about", "#amenities", "#gallery", "#rooms", "#reviews"];
 
 export default function Footer() {
   const scrollTo = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -21,12 +29,17 @@ export default function Footer() {
                 <Leaf className="w-5 h-5 text-white" />
               </div>
               <div>
-                <span className="font-display text-xl font-semibold block">Casa Granada</span>
-                <span className="text-emerald-400 text-xs tracking-widest uppercase">Private Villa · Batangas</span>
+                <span className="font-display text-xl font-semibold block">
+                  Casa Granada
+                </span>
+                <span className="text-emerald-400 text-xs tracking-widest uppercase">
+                  Private Villa · Batangas
+                </span>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
-              A private luxury villa retreat in the heart of Sto. Tomas, Batangas. Where nature, privacy, and refined comfort meet.
+              A private luxury villa retreat in the heart of Sto. Tomas,
+              Batangas. Where nature, privacy, and refined comfort meet.
             </p>
             {/* Social links */}
             <div className="flex gap-3">
@@ -39,7 +52,7 @@ export default function Footer() {
                 <Instagram className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 transition-colors" />
               </a>
               <a
-                href="https://facebook.com/casagranada"
+                href="https://www.facebook.com/casagranadabatangas"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-white/5 hover:bg-emerald-700/30 border border-white/10 flex items-center justify-center transition-colors group"
@@ -51,7 +64,9 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-sm tracking-widest uppercase text-gray-300 mb-5">Explore</h4>
+            <h4 className="font-semibold text-sm tracking-widest uppercase text-gray-300 mb-5">
+              Explore
+            </h4>
             <ul className="space-y-3">
               {navLinks.map((link, i) => (
                 <li key={link}>
@@ -66,7 +81,7 @@ export default function Footer() {
               ))}
               <li>
                 <button
-                  onClick={() => scrollTo('#booking')}
+                  onClick={() => scrollTo("#booking")}
                   className="text-emerald-400 hover:text-emerald-300 text-sm transition-colors font-medium"
                 >
                   Book Now →
@@ -77,24 +92,33 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold text-sm tracking-widest uppercase text-gray-300 mb-5">Contact Us</h4>
+            <h4 className="font-semibold text-sm tracking-widest uppercase text-gray-300 mb-5">
+              Contact Us
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
                 <span className="text-gray-400 text-sm leading-relaxed">
-                  Sto. Tomas, Batangas<br />
+                  Sto. Tomas, Batangas
+                  <br />
                   Philippines
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <a href="tel:+639XXXXXXXXX" className="text-gray-400 hover:text-emerald-400 text-sm transition-colors">
+                <a
+                  href="tel:+639XXXXXXXXX"
+                  className="text-gray-400 hover:text-emerald-400 text-sm transition-colors"
+                >
                   +63 9XX XXX XXXX
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                <a href="mailto:hello@casagranada.ph" className="text-gray-400 hover:text-emerald-400 text-sm transition-colors">
+                <a
+                  href="mailto:hello@casagranada.ph"
+                  className="text-gray-400 hover:text-emerald-400 text-sm transition-colors"
+                >
                   hello@casagranada.ph
                 </a>
               </li>
@@ -121,7 +145,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Casa Granada. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs flex items-center gap-1.5">
-            Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> in the Philippines
+            Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> in
+            the Philippines
           </p>
         </div>
       </div>
